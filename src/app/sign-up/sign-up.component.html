@@ -39,6 +39,18 @@
       <span *ngIf="email.errors?.['required']">Le champ email est requis</span>
       <span *ngIf="email.errors?.['email']">L'email est invalide</span>
     </div>
+
+    <fieldset>
+        <label for="password-sign">MDP</label>
+        <input id="password-sign" name="password-sign" type="password" [(ngModel)]="model.password" #password="ngModel" required minlength="3" maxlength="15"/>
+      </fieldset>
+    
+      <!-- Message d'erreurs de title -->
+      <div *ngIf="password.errors">
+        <span *ngIf="password.errors?.['required']">Le MDP est requis</span>
+        <span *ngIf="password.errors?.['minlength']">Le MDP doit comporter au moins 3 caractères</span>
+        <span *ngIf="password.errors?.['maxlength']">Le MDP ne doit pas dépasser 15 caractères</span>
+      </div>
   
   
     <button type="reset">Restaurer</button>
