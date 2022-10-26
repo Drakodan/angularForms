@@ -1,0 +1,46 @@
+<form #myForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+      Form submitted ? {{myForm.submitted}}
+      Form valid ? {{myForm.valid}}
+      Form invalid ? {{myForm.valid}}
+    </div>
+  
+    <fieldset>
+      <label for="firstname-sign">Prénom</label>
+      <input id="firstname-sign" name="firstname-sign" type="text" [(ngModel)]="model.firstname" #firstname="ngModel" required minlength="3" maxlength="15"/>
+    </fieldset>
+  
+    <!-- Message d'erreurs de title -->
+    <div *ngIf="firstname.errors">
+      <span *ngIf="firstname.errors?.['required']">Le prénom est requis</span>
+      <span *ngIf="firstname.errors?.['minlength']">Le prénom doit comporter au moins 3 caractères</span>
+      <span *ngIf="firstname.errors?.['maxlength']">Le prénom ne doit pas dépasser 15 caractères</span>
+    </div>
+  
+    <fieldset>
+        <label for="lastname-sign">Nom</label>
+        <input id="lastname-sign" name="lastname-sign" type="text" [(ngModel)]="model.lastname" #lastname="ngModel" required minlength="3" maxlength="15"/>
+      </fieldset>
+    
+      <!-- Message d'erreurs de title -->
+      <div *ngIf="lastname.errors">
+        <span *ngIf="lastname.errors?.['required']">Le nom est requis</span>
+        <span *ngIf="lastname.errors?.['minlength']">Le nom doit comporter au moins 3 caractères</span>
+        <span *ngIf="lastname.errors?.['maxlength']">Le nom ne doit pas dépasser 15 caractères</span>
+      </div>
+    
+    <fieldset>
+      <label for="email-sign">Contact</label>
+      <input id="email-sign" name="email-sign" type="email" [(ngModel)]="model.email" #email="ngModel" required email>
+    </fieldset>
+  
+    <!-- Message d'erreurs de contact -->
+    <div *ngIf="email.errors">
+      <span *ngIf="email.errors?.['required']">Le champ email est requis</span>
+      <span *ngIf="email.errors?.['email']">L'email est invalide</span>
+    </div>
+  
+  
+    <button type="reset">Restaurer</button>
+    <button type="submit">S'inscrire</button>
+  </form>
